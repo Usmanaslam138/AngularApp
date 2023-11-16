@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand mx-3" href="">PixelBud.</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="navItems">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLinkActive="active"
+                        [routerLinkActiveOptions]={exact:true} routerLink="">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" routerLink="about">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" href="#" routerLink="gallery">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" href="" routerLink="products">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" href="" routerLink="services">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" href="" routerLink="notes">Notes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" href="" routerLink="contact">Contact Us</a>
+                </li>
+            </ul>
+            <div class="backgallery" *ngIf="backGallery">
+                <a routerLink="gallery"><i class='bx bx-arrow-back'></i> Back to gallery</a>
+            </div>
+            <div class="backProduct" *ngIf="backProducts">
+                <a routerLink="products"><i class='bx bx-arrow-back'></i> Back to Products</a>
+            </div>
+            <form class="d-flex" role="search" *ngIf="headerLoginBlock">
+                <button *ngIf="!isLoggedIn" class="btn btn-danger mx-3" type="button" routerLink="userlogin">Sign
+                    In</button>
+                <button class="btn2" *ngIf="isLoggedIn">Welcome <span>{{isLoggedIn}}</span> | <a
+                        (click)="onSignOut()"><i class='bx bx-lock-open-alt'></i> Sign
+                        Out</a></button>
+            </form>
+            <div class="contact" *ngIf="isContactPage">
+                <p><i class='bx bxs-envelope'></i> {{"Info@pixelbud.com"}}</p>
+                <p><i class='bx bx-phone'></i> +1029342342343</p>
+            </div>
+
+        </div>
+    </div>
+</nav>

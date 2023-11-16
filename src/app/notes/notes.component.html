@@ -1,0 +1,83 @@
+<main class="bg-light py-3">
+    <ng-container *ngIf="addNotes">
+        <div class="container-fluid py-3 modals rounded">
+            <form class="rounded shadow px-5 pb-5 pt-3 w-50 m-auto" [formGroup]="notesAddForm"
+                (ngSubmit)="onSubmit(notesAddForm.value)">
+                <div class="d-flex justify-content-end">
+                    <i class="fa-solid fa-x" (click)="onModalClose()"></i>
+                </div>
+                <h4 class="text-center pb-2 text-warning">Add Notes</h4>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter title...."
+                        formControlName="title">
+                    <!-- <small
+                            *ngIf="!myReactiveForm.get('userDetail.username')?.valid && myReactiveForm.get('userDetail.username')?.touched"
+                            class="text-danger">
+                            <span *ngIf="myReactiveForm.get('userDetail.username')?.errors?.['required']">Please enter a valid
+                                username</span>
+                            <span *ngIf="myReactiveForm.get('userDetail.username')?.errors?.['userAlreadyExist']">Username
+                                already
+                                exist!</span>
+                        </small> -->
+
+                </div>
+                <div class="mb-3">
+                    <label for="note" class="form-label">Note</label>
+                    <textarea class="form-control" formControlName="note" rows="5" placeholder="Type note..."
+                        required></textarea>
+                    <!-- <small class="text-danger"
+                            *ngIf="!myReactiveForm.get('userDetail.email')?.valid && myReactiveForm.get('userDetail.email')?.touched">
+                            <span *ngIf="myReactiveForm.get('userDetail.email')?.errors?.['required']">Please enter a valid
+                                Email Address</span>
+                            <span *ngIf="myReactiveForm.get('userDetail.email')?.errors?.['emailNotAllowed']">Email already
+                                exist!</span>
+                        </small> -->
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button [disabled]="!notesAddForm.valid" type="submit" class="btn btn-warning px-5">{{!editMode?'Add
+                        Note':'Update Note'}}</button>
+                </div>
+            </form>
+
+        </div>
+    </ng-container>
+    <ng-container *ngIf="fetching">
+        <div class="pyramid-loader">
+            <div class="wrapper">
+                <span class="side side1"></span>
+                <span class="side side2"></span>
+                <span class="side side3"></span>
+                <span class="side side4"></span>
+                <span class="shadow"></span>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="!addNotes && !fetching">
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-warning mx-5 mb-3" type="button" (click)="onAddNotes()">Add Notes</button>
+        </div>
+        <div class="container tab-content bg-transparent">
+            <div id="note-full-container" class="note-has-grid row">
+                <div class="col-md-4 single-note-item all-category" *ngFor="let data of notesData; let i = index">
+                    <div class="card card-body">
+                        <span class="side-stick"></span>
+                        <h6 class="note-title mb-1 " data-noteheading="Book a Ticket for Movie">
+                            {{data.title}} <i class="point fa fa-circle ml-1 font-10 text-warning "></i></h6>
+                        <p class="note-date font-12 text-muted">{{date | date:'shortDate'}}</p>
+                        <div class="note-content">
+                            <p class="note-inner-content text-muted">
+                                {{data.note}}</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <span class="mx-2 text-primary" (click)="onEditData(data.userId,i)"><i
+                                    class="fa fa-edit favourite-note edit-icon"></i></span>
+                            <span class="mr-1 text-danger" (click)="onDeleteData(data.userId,i)"><i
+                                    class="fa fa-trash remove-note del-icon"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</main>

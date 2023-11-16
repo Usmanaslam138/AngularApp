@@ -1,0 +1,75 @@
+<!-- Product Style -->
+<section class="product-area shop-sidebar shop section">
+    <div class="container">
+        <div class="row justify-content-center" *ngIf="!saving">
+            <div class="col-md-8">
+                <h3 class=" text-warning py-3 text-center">{{title | async}}</h3>
+                <form [formGroup]="addServicesForm" (ngSubmit)="onSubmit()">
+                    <input type="text" class="form-control mb-3" placeholder="Enter id...." formControlName="id">
+                    <input type="text" class="form-control mb-3" placeholder="Enter title...." formControlName="title">
+                    <input type="text" class="form-control mb-3" placeholder="Enter price...." formControlName="price">
+                    <div class="text-center">
+                        <button [disabled]=" !addServicesForm.valid" class="btn btn-warning m-auto mx-3" type="submit">
+                            Add
+                            Service</button>
+                        <button class="btn btn-service mx-3" type="button" (click)="saveService()">Save
+                            Service</button>
+                        <button class="btn btn-fetch" type="button" (click)="onFetchData()">Fetch Data</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="loader" *ngIf="saving">
+            <div class="intern">
+            </div>
+            <div class="external-shadow">
+                <div class="central">
+                </div>
+            </div>
+        </div>
+        <div class="pyramid-loader" *ngIf="fetching">
+            <div class="wrapper">
+                <span class="side side1"></span>
+                <span class="side side2"></span>
+                <span class="side side3"></span>
+                <span class="side side4"></span>
+                <span class="shadow"></span>
+            </div>
+        </div>
+        <div class="row" *ngIf="!fetching">
+            <div class="col-md-4" appHoverDirective *ngFor="let data of ServicesData; let i = index">
+                <div class="single-product">
+                    <div class="product-img">
+                        <a>
+                            <img class="default-img" src="{{data.imgUrl}}" alt="#">
+                            <img class="hover-img" src="{{data.hoverUrl}}" alt="#">
+                            <span class="new">New</span>
+                        </a>
+                        <div class="button-head">
+                            <div class="product-action">
+                                <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i
+                                        class="fa-solid fa-eye"></i><span>Quick Shop</span></a>
+                                <a title="Wishlist"><i class="fa-regular fa-heart "></i><span>Add to
+                                        Wishlist</span></a>
+                                <a title="Compare"><i class="fa-solid fa-code-compare"></i><span>Add to
+                                        Compare</span></a>
+                            </div>
+                            <div class="product-action-2">
+                                <a title="Add to cart">Add to cart</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="product-content">
+                        <h3><a>{{data.title}}</a></h3>
+                        <div class="product-price">
+                            <span>${{data.price}}</span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-del" (click)="onDelete(i)">Delete Item</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

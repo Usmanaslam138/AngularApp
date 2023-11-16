@@ -1,0 +1,73 @@
+#navbarSupportedContent ul {
+  margin: auto;
+}
+
+#navbarSupportedContent ul a {
+  font-size: 20px;
+  padding: 10px 20px;
+  transition: all 0.4s ease-in-out;
+  position: relative;
+}
+
+#navbarSupportedContent ul a:hover {
+  text-decoration: overline;
+  border-radius: 5px;
+  color: orange;
+}
+
+.navbar-brand {
+  font-size: 25px;
+  color: orangered;
+}
+
+form {
+  flex-direction: column;
+}
+
+form .btn2 {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+form span {
+  color: orangered;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+form a {
+  text-decoration: none;
+  font-weight: 600;
+  color: black;
+  transition: all 0.2s ease;
+  margin: 0 10px;
+}
+
+form a:hover {
+  color: orange;
+}
+
+.contact p {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.contact p:hover {
+  color: orangered;
+}
+
+.contact p i {
+  margin-right: 5px;
+}
+
+.backgallery a {
+  transition: all 0.4s ease;
+  margin-left: 40px;
+}
+.backgallery a:hover {
+  color: orange;
+}

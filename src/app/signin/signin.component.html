@@ -1,0 +1,40 @@
+<main [ngClass]="formStatus">
+    <div class="containers">
+        <div class="login-box">
+            <h2>Login</h2>
+            <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+                <div class="user-box mb-5">
+                    <input type="text" formControlName="username">
+                    <label for="username">Username</label>
+                    <small class="text-warning smalltext"
+                        *ngIf="!signInForm.get('username')?.valid && signInForm.get('username')?.touched">
+                        <span *ngIf="signInForm.get('username')?.errors?.['required']">Please enter a valid
+                            username</span>
+                        <span *ngIf="signInForm.get('username')?.errors?.['userAlreadyExist']">Username already
+                            exist!</span>
+                    </small>
+                </div>
+                <div class="user-box">
+                    <input type="password" formControlName="password" autocomplete="current-password">
+                    <label for="password">Password</label>
+                    <small class="pass text-warning smalltext" *ngIf="signInForm.get('password')?.errors?.['pattern']">
+                        <ul>
+                            <li>At least one lowercase letter</li>
+                            <li>At least one uppercase letter</li>
+                            <li>At least one digit</li>
+                            <li>Minimum length of 8 characters</li>
+                        </ul>
+                    </small>
+                </div>
+                <button class="btnSubmit" [disabled]="!signInForm.valid" type="Submit"><a>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Sign In
+                    </a>
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
