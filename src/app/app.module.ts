@@ -14,7 +14,6 @@ import { ContactComponent } from "./contact/contact.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { ServicesComponent } from "./services/services.component";
 import { NotesComponent } from "./notes/notes.component";
-import { ModalComponent } from "./notes/modal/modal.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +26,6 @@ import { ModalComponent } from "./notes/modal/modal.component";
     NavbarComponent,
     ServicesComponent,
     NotesComponent,
-    ModalComponent,
   ],
   imports: [
     BrowserModule,

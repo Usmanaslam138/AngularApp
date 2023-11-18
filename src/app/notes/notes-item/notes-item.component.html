@@ -1,0 +1,43 @@
+<div class="container-fluid py-2">
+    <div class="container shadow rounded custom bg-light">
+
+        <ng-container *ngIf="fetching">
+            <div class="hello">
+                <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+                    <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000"
+                        stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round">
+                    </circle>
+                    <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000"
+                        stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round">
+                    </circle>
+                    <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000"
+                        stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+                    <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000"
+                        stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+                </svg>
+            </div>
+        </ng-container>
+
+
+
+        <ng-container *ngIf="!fetching">
+            <div class="header">
+                <h3 class="text-dark pt-3"> {{singleNote.title}}
+                </h3>
+                <span class="close-icon" routerLink="/notes"><i class="fa-solid fa-x"></i></span>
+            </div>
+            <div class="content">
+                <p class="date">{{singleNote.date | date:'mediumDate'}}</p>
+                <p class="randm">{{singleNote.note}}</p>
+            </div>
+            <div class="img text-end row justify-content-center">
+                <div class=" col-md-5">
+                    <img src="../../../assets/12.jpg" alt="" width="100%" height="100%">
+                </div>
+                <div class="col-md-5">
+                    <img src="../../../assets/13.jpg" alt="" width="100%" height="100%">
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

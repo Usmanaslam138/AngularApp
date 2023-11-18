@@ -10,19 +10,24 @@ import { ContactComponent } from "./contact/contact.component";
 import { HomeComponent } from "./home/home.component";
 import { SigninComponent } from "./signin/signin.component";
 import { CustomPreloadService } from "./appServices/custom-preload.service";
-import { ModalComponent } from "./notes/modal/modal.component";
-
 const appRoutes: Routes = [
   { path: "", component: HomeComponent },
   { path: "about", component: AboutComponent },
   { path: "contact", component: ContactComponent },
   { path: "userlogin", component: SigninComponent },
-  { path: "addnotes", component: ModalComponent },
   {
     path: "products",
     data: { preload: true },
     loadChildren: () =>
       import("../app/products/products.module").then((x) => x.ProductsModule),
+  },
+  {
+    path: "notes/:id",
+    data: { preload: true },
+    loadChildren: () =>
+      import("../app/notes/notes-item/notes-item.module").then(
+        (x) => x.NotesItemModule
+      ),
   },
   {
     path: "notes",

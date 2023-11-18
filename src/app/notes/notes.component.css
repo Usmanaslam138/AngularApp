@@ -424,3 +424,17 @@ form.VALID {
 .edit-icon:hover {
   color: #013266;
 }
+
+.text-ell {
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+}
+
+.note-title {
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+}

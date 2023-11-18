@@ -34,6 +34,10 @@
                                 exist!</span>
                         </small> -->
                 </div>
+                <div class="mb-3">
+                    <input type="date" class="form-control" formControlName="date" rows="5" placeholder="Type note..."
+                        required>
+                </div>
                 <div class="d-flex justify-content-center">
                     <button [disabled]="!notesAddForm.valid" type="submit" class="btn btn-warning px-5">{{!editMode?'Add
                         Note':'Update Note'}}</button>
@@ -64,16 +68,18 @@
                         <span class="side-stick"></span>
                         <h6 class="note-title mb-1 " data-noteheading="Book a Ticket for Movie">
                             {{data.title}} <i class="point fa fa-circle ml-1 font-10 text-warning "></i></h6>
-                        <p class="note-date font-12 text-muted">{{date | date:'shortDate'}}</p>
+                        <p class="note-date font-12 text-danger">{{data.date | date:'mediumDate'}}</p>
                         <div class="note-content">
-                            <p class="note-inner-content text-muted">
+                            <p class="note-inner-content text-muted text-ell">
                                 {{data.note}}</p>
                         </div>
                         <div class="d-flex align-items-center">
                             <span class="mx-2 text-primary" (click)="onEditData(data.userId,i)"><i
                                     class="fa fa-edit favourite-note edit-icon"></i></span>
-                            <span class="mr-1 text-danger" (click)="onDeleteData(data.userId,i)"><i
+                            <span class="mx-1 text-danger" (click)="onDeleteData(data.userId,i)"><i
                                     class="fa fa-trash remove-note del-icon"></i></span>
+                            <span class="mx-1 text-dark" routerLink="{{data.userId}}"><i
+                                    class="fa fa-eye remove-note del-icon"></i></span>
                         </div>
                     </div>
                 </div>

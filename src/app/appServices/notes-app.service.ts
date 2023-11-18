@@ -23,6 +23,12 @@ export class NotesAppService {
     return this.http.get(this.url);
   }
 
+  fetchSingleData(id) {
+    return this.http.get(
+      `https://ecommerceproducts-38aea-default-rtdb.asia-southeast1.firebasedatabase.app/notes/${id}.json`
+    );
+  }
+
   getData() {
     return this.http.get(this.url);
   }

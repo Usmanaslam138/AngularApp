@@ -31,14 +31,30 @@ export class NotesComponent implements OnInit {
     this.notesAddForm = new FormGroup({
       title: new FormControl(null, Validators.required),
       note: new FormControl(null, Validators.required),
+      date: new FormControl(null, Validators.required),
     });
 
-    this.onFetchData();
+    if (localStorage.getItem("noteData")) {
+      this.getlocalStorageData();
+    } else {
+      this.onFetchData();
+    }
   }
 
   onDeleteData(userId, id) {
     this.notesData.splice(id, 1);
     this._notesService.deleteData(userId).subscribe((res) => {});
+    localStorage.removeItem("noteData");
+    localStorage.setItem("noteData", JSON.stringify(this.notesData));
+  }
+
+  setslocalStorage(data): void {
+    localStorage.setItem("noteData", JSON.stringify(data));
+  }
+
+  getlocalStorageData() {
+    const localdata: any = localStorage.getItem("noteData");
+    this.notesData = JSON.parse(localdata);
   }
 
   onFetchData() {
@@ -58,12 +74,13 @@ export class NotesComponent implements OnInit {
         (res) => {
           this.fetching = false;
           this.notesData = res;
+          this.setslocalStorage(res);
         },
         (err) => console.error(err)
       );
   }
 
-  async saveNotes(data) {
+  saveNotes(data) {
     this._notesService.postData(data).subscribe((res) => {
       this.onFetchData();
     });
@@ -71,6 +88,8 @@ export class NotesComponent implements OnInit {
 
   onAddNotes() {
     this._notesService.addNotes.next(true);
+    this.editMode = false;
+    this.notesAddForm.reset();
   }
 
   onEditData(userId, id) {
@@ -78,6 +97,7 @@ export class NotesComponent implements OnInit {
     this.notesAddForm.setValue({
       title: this.notesData[id].title,
       note: this.notesData[id].note,
+      date: this.notesData[id].date,
     });
     this.editMode = true;
     this.editId = userId;
@@ -86,8 +106,7 @@ export class NotesComponent implements OnInit {
   onModalClose() {
     this._notesService.addNotes.next(false);
   }
-  url =
-    "`https://ecommerceproducts-38aea-default-rtdb.asia-southeast1.firebasedatabase.app/notes/`";
+
   onSubmit(notes: Notes) {
     if (this.editMode) {
       console.log(this.editId);
@@ -107,7 +126,6 @@ export class NotesComponent implements OnInit {
       const promise = new Promise((res, rej) => {
         this.notesData.push(notes);
         this.saveNotes(notes);
-        console.log("adsda");
         res("done");
       });
       promise.then((res) => {
